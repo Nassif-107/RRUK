@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Лаба_01\\РРУК_01\\РРУК_01.csproj": {}
+    "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\РРУК_01\\РРУК_01.csproj": {}
   },
   "projects": {
-    "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Лаба_01\\РРУК_01\\РРУК_01.csproj": {
+    "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\РРУК_01\\РРУК_01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Лаба_01\\РРУК_01\\РРУК_01.csproj",
+        "projectUniqueName": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\РРУК_01\\РРУК_01.csproj",
         "projectName": "РРУК_01",
-        "projectPath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Лаба_01\\РРУК_01\\РРУК_01.csproj",
+        "projectPath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\РРУК_01\\РРУК_01.csproj",
         "packagesPath": "C:\\Users\\basma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Лаба_01\\РРУК_01\\obj\\",
+        "outputPath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\РРУК_01\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
