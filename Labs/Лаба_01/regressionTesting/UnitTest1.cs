@@ -34,7 +34,7 @@ namespace regressionTesting
         {
             bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 11, 50));
             var result = bill.statement();
-            Assert.IsTrue(result.Contains("Сумма счета составляет 540"));
+            Assert.IsTrue(result.Contains("Сумма счета составляет 537,25"));
             Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
         }
         [Test]
@@ -92,7 +92,7 @@ namespace regressionTesting
             bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 11, 200));
             bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 15, 50));
             var result = bill.statement();
-            Assert.IsTrue(result.Contains("Сумма счета составляет 3500"));
+            Assert.IsTrue(result.Contains("Сумма счета составляет 3496,25"));
             Assert.IsTrue(result.Contains("Вы заработали 52 бонусных балов"));
         }
     }

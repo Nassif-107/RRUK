@@ -80,8 +80,8 @@ namespace РРУК_01
             Bill bill = new Bill(customer);
 
             bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 6, 100));
-            bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 11, 200));
-            bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 15, 50));
+            bill.addGoods(new Item(new Goods("Товар 2", Goods.SALE), 11, 200));
+            bill.addGoods(new Item(new Goods("Товар 3", Goods.SPECIAL_OFFER), 15, 50));
             var result = bill.statement();
             Console.WriteLine(result);
         }
