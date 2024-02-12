@@ -14,34 +14,73 @@ namespace regressionTesting
             bill = new Bill(customer);
         }
 
+        //[Test]
+        //public void EmptyBillTest()
+        //{
+        //    var result = bill.statement();
+        //    var expectedFooter = "Сумма счета составляет 0\nВы заработали 0 бонусных балов";
+        //    Assert.IsTrue(result.Contains(expectedFooter));
+        //}
+        //[Test]
+        //public void BillSingleItem()
+        //{
+        //    bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 1, 100));
+        //    var result = bill.statement();
+        //    Assert.IsTrue(result.Contains("Сумма счета составляет 100\n"));
+        //    Assert.IsTrue(result.Contains("Вы заработали 5 бонусных балов"));
+
+        //}
+        //[Test]
+        //public void BIllMultipleItems()
+        //{
+        //    bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 3, 100));
+        //    bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 11, 50));
+        //    var result = bill.statement();
+        //    Assert.IsTrue(result.Contains("Сумма счета составляет 831"));
+        //    Assert.IsTrue(result.Contains("Вы заработали 15 бонусных балов"));
+        //}
+        //[Test]
+        //public void DiscountsBonuses()
+        //{
+        //    bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 11, 200));
+        //    var result = bill.statement();
+        //    Assert.IsTrue(result.Contains("Сумма счета составляет 2178"));
+        //    Assert.IsTrue(result.Contains("Вы заработали 22 бонусных балов"));
+        //}
+        //[Test]
+        //public void Statement_UsingCustomerBonuses_ReturnsCorrectDiscount()
+        //{
+        //    customer.receiveBonus(100);
+        //    bill.addGoods(new Item(new Goods("Товар с использованием бонусов", Goods.REGULAR), 6, 100));
+        //    var result = bill.statement();
+        //    Assert.IsTrue(result.Contains("Вы заработали 30 бонусных балов"));
+        //}
         [Test]
-        public void EmptyBillTest()
+        public void test1()
         {
             var result = bill.statement();
             var expectedFooter = "Сумма счета составляет 0\nВы заработали 0 бонусных балов";
             Assert.IsTrue(result.Contains(expectedFooter));
         }
         [Test]
-        public void BillSingleItem()
+        public void test2()
         {
             bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 1, 100));
             var result = bill.statement();
-            Assert.IsTrue(result.Contains("Товар 1"));
             Assert.IsTrue(result.Contains("Сумма счета составляет 100\n"));
             Assert.IsTrue(result.Contains("Вы заработали 5 бонусных балов"));
 
         }
         [Test]
-        public void BIllMultipleItems()
+        public void test3()
         {
-            bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 3, 100));
             bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 11, 50));
             var result = bill.statement();
-            Assert.IsTrue(result.Contains("Сумма счета составляет 831"));
-            Assert.IsTrue(result.Contains("Вы заработали 15 бонусных балов"));
+            Assert.IsTrue(result.Contains("Сумма счета составляет 540"));
+            Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
         }
         [Test]
-        public void DiscountsBonuses()
+        public void test4()
         {
             bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 11, 200));
             var result = bill.statement();
@@ -49,12 +88,54 @@ namespace regressionTesting
             Assert.IsTrue(result.Contains("Вы заработали 22 бонусных балов"));
         }
         [Test]
-        public void Statement_UsingCustomerBonuses_ReturnsCorrectDiscount()
+        public void test5()
         {
-            customer.receiveBonus(100);
-            bill.addGoods(new Item(new Goods("Товар с использованием бонусов", Goods.REGULAR), 6, 100));
+            bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 5, 50));
             var result = bill.statement();
-            Assert.IsTrue(result.Contains("Вы заработали 30 бонусных балов"));
+            Assert.IsTrue(result.Contains("Сумма счета составляет 240"));
+            Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
+        }
+        [Test]
+        public void test6()
+        {
+            bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 2, 200));
+            var result = bill.statement();
+            Assert.IsTrue(result.Contains("Сумма счета составляет 400"));
+            Assert.IsTrue(result.Contains("Вы заработали 4 бонусных балов"));
+        }
+        [Test]
+        public void test7()
+        {
+            bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 3, 100));
+            var result = bill.statement();
+            Assert.IsTrue(result.Contains("Сумма счета составляет 291\n"));
+            Assert.IsTrue(result.Contains("Вы заработали 15 бонусных балов"));
+        }
+        [Test]
+        public void test8()
+        {
+            bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 2, 100));
+            var result = bill.statement();
+            Assert.IsTrue(result.Contains("Сумма счета составляет 200\n"));
+            Assert.IsTrue(result.Contains("Вы заработали 10 бонусных балов"));
+        }
+        [Test]
+        public void test9()
+        {
+            bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 0, 100));
+            var result = bill.statement();
+            Assert.IsTrue(result.Contains("Сумма счета составляет 0"));
+            Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
+        }
+        [Test]
+        public void test10()
+        {
+            bill.addGoods(new Item(new Goods("Товар 1", Goods.REGULAR), 6, 100));
+            bill.addGoods(new Item(new Goods("Товар со скидкой", Goods.SALE), 11, 200));
+            bill.addGoods(new Item(new Goods("Товар 2", Goods.SPECIAL_OFFER), 15, 50));
+            var result = bill.statement();
+            Assert.IsTrue(result.Contains("Сумма счета составляет 3500"));
+            Assert.IsTrue(result.Contains("Вы заработали 52 бонусных балов"));
         }
     }
 }

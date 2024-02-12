@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("regressionTesting")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18f9e651fffbf569c6cae410d60ae2f54336d053")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df3fa770455c32ad712e3b02d21ce61a6fac46e2")]
 [assembly: System.Reflection.AssemblyProductAttribute("regressionTesting")]
 [assembly: System.Reflection.AssemblyTitleAttribute("regressionTesting")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
