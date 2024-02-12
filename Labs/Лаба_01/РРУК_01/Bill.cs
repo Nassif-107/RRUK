@@ -13,15 +13,28 @@
         {
             _items.Add(arg);
         }
+        public string getHeader()
+        {
+            string result = "Счет для " + _customer.getName();
+            result += "\t" + "Название" + "\t" + "Цена" +
+            "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
+            "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            return result;
+        }
+        public string getFooter(string result, double totalAmount, int totalBonus)
+        {
+            result = "Сумма счета составляет " +
+           totalAmount.ToString() + "\n";
+            result += "Вы заработали " +
+           totalBonus.ToString() + " бонусных балов";
+            return result;
+        }
         public String statement()
         {
             double totalAmount = 0;
             int totalBonus = 0;
             List<Item>.Enumerator items = _items.GetEnumerator();
-            String result = "Счет для " + _customer.getName() + "\n";
-            result += "\t" + "Название" + "\t" + "Цена" +
-            "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
-            "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            String result = getHeader();
             while (items.MoveNext())
             {
                 double thisAmount = 0;
@@ -75,10 +88,7 @@
                 totalBonus += bonus;
             }
             //добавить нижний колонтитул
-            result += "Сумма счета составляет " +
-           totalAmount.ToString() + "\n";
-            result += "Вы заработали " +
-           totalBonus.ToString() + " бонусных балов";
+            result += getFooter(result, totalAmount, totalBonus);
             //Запомнить бонус клиента
             _customer.receiveBonus(totalBonus);
             return result;
