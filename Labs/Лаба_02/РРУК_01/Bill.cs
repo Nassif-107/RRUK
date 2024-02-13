@@ -39,39 +39,8 @@
                 "\t" + discount.ToString() + "\t" + totalAmount.ToString() +
                 "\t" + bonus.ToString() + "\n";
         }
-        // Метод для получения скидки
-        public double GetDiscount(Item each)
-        {
-            double discount = 0;
-            switch (each.getGoods().getPriceCode())
-            {
-                case Goods.REGULAR:
-                    if (each.getQuantity() > 2)
-                        discount = (GetSum(each)) * 0.03; // 3%
-                    break;
-                case Goods.SPECIAL_OFFER:
-                    if (each.getQuantity() > 10)
-                        discount = (GetSum(each)) * 0.005; // 0.5%
-                    break;
-                case Goods.SALE:
-                    if (each.getQuantity() > 3)
-                        discount = (GetSum(each)) * 0.01; // 0.1%
-                    break;
-            }
-            return discount;
-        }
-        // Метод для получения бонуса
-        public int GetBonus(Item each)
-        {
-            switch (each.getGoods().getPriceCode())
-            {
-                case Goods.REGULAR:
-                    return(int)(GetSum(each) * 0.05);
-                case Goods.SALE:
-                    return (int)(GetSum(each) * 0.01);
-            }
-            return 0;
-        }
+        
+        
         // Метод для вычисления суммы
         public double GetSum(Item each)
         {
@@ -105,10 +74,10 @@
             while (items.MoveNext())
             {
                 Item each = (Item)items.Current;
-
+                
                 //определить сумму для каждой строки
-                double discount = GetDiscount(each);
-                int bonus = GetBonus(each);
+                double discount = each.GetDiscount();
+                int bonus = each.GetBonus();
 
                 //показать результаты
                 double sumWithDiscount = GetSum(each) - discount;

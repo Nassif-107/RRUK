@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "SJapzZ2sD+chiXVi1eBWHLIZdHdyiuj91vkL+/EU7504856y9wiqG0ei2Sv5I7SBrO0SX1aVgL72uwhOmtchKQ==",
+  "dgSpecHash": "0RSIvoR7Fxtf85/fvqbVpfIyv5rDSRzNmi9vw+peKwduwK8rEMWW1b7rFb7NWwTwG8UUrh+FBrIM9E7ouACVOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_01\\regressionTesting\\regressionTesting.csproj",
+  "projectFilePath": "C:\\Users\\basma\\Desktop\\3 year\\6 semester\\Рефакторинг и работа с унаследованным кодом\\Лабы\\RRUK\\Labs\\Лаба_02\\regressionTesting\\regressionTesting.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\basma\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\basma\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",
