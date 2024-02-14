@@ -50,18 +50,14 @@
         public double GetUsedBonus(Item each, double sumWithDiscount)
         {
             double usedBonus = 0;
-            switch (each.getGoods().getPriceCode())
+            if (each.getGoods().GetType() == typeof(RegularGoods))
             {
-                //Обычный товав
-                case Goods.REGULAR:
-                    if (each.getQuantity() > 5)
-                        usedBonus = _customer.useBonus((int)(sumWithDiscount));
-                    break;
-                //Специальное предложение
-                case Goods.SPECIAL_OFFER:
-                    if (each.getQuantity() > 1)
-                        usedBonus = _customer.useBonus((int)(sumWithDiscount));
-                    break;
+                if (each.getQuantity() > 5)
+                    usedBonus = _customer.useBonus((int)(sumWithDiscount));
+            } else if (each.getGoods().GetType() == typeof(SpecialGoods))
+            {
+                if (each.getQuantity() > 1)
+                    usedBonus = _customer.useBonus((int)(sumWithDiscount));
             }
             return usedBonus;
         }
