@@ -29,18 +29,27 @@ namespace РРУК_01
         public String GetBIll()
         {
             Bill bill = new Bill(_customer, view);
+            foreach (Item item in _items)
+            {
+                bill.addGoods(item);
+            }
             BillSummary billSummary = bill.Process();
 
             List<Item>.Enumerator items = _items.GetEnumerator();
             String result = view.GetHeader(_customer);
+            int index = 0; // Initialize an index for parallel access
             foreach (var itemSummary in billSummary.ItemSummaries)
             {
-                Item each = (Item)items.Current;
-                result += view.GetItemString(
-                    each,
-                    itemSummary.Discount,
-                    itemSummary.Sum,
-                    itemSummary.Bonus);
+                if (index < _items.Count) // Check to avoid IndexOutOfRangeException
+                {
+                    Item each = _items[index]; // Access the corresponding Item
+                    result += view.GetItemString(
+                        each, // Pass the Item object
+                        itemSummary.Discount,
+                        itemSummary.Sum,
+                        itemSummary.Bonus);
+                    index++; // Move to the next item
+                }
             }
             result += view.GetFooter(billSummary.TotalAmount, billSummary.TotalBonus);
             return result;
