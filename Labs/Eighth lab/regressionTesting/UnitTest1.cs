@@ -36,7 +36,10 @@ namespace regressionTesting
         [Test]
         public void test2()
         {
-            bill.addGoods(new Item(new RegularGoods("Товар 1"), 1, 100));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            // Создаем товар с использованием GoodsFactory и обычной стратегии (strategyType = 0)
+            Goods goods = goodsFactory.Create("REG", "Товар 1", 0);
+            bill.addGoods(new Item(goods, 1, 100));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 100\n"));
             Assert.IsTrue(result.Contains("Вы заработали 5 бонусных балов"));
@@ -45,7 +48,9 @@ namespace regressionTesting
         [Test]
         public void test3()
         {
-            bill.addGoods(new Item(new SpecialGoods("Товар 2"), 11, 50));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("SPO", "Товар 2", 0); // Создаем специальный товар
+            bill.addGoods(new Item(goods, 11, 50));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 537,25"));
             Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
@@ -53,7 +58,9 @@ namespace regressionTesting
         [Test]
         public void test4()
         {
-            bill.addGoods(new Item(new SaleGoods("Товар со скидкой"), 11, 200));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("SAL", "Товар со скидкой", 0); // Создаем товар со скидкой
+            bill.addGoods(new Item(goods, 11, 200));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 2178"));
             Assert.IsTrue(result.Contains("Вы заработали 22 бонусных балов"));
@@ -61,7 +68,9 @@ namespace regressionTesting
         [Test]
         public void test5()
         {
-            bill.addGoods(new Item(new SpecialGoods("Товар 2"), 5, 50));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("SPO", "Товар 2", 0); // Создаем специальный товар
+            bill.addGoods(new Item(goods, 5, 50));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 240"));
             Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
@@ -69,7 +78,9 @@ namespace regressionTesting
         [Test]
         public void test6()
         {
-            bill.addGoods(new Item(new SaleGoods("Товар со скидкой"), 2, 200));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("SAL", "Товар со скидкой", 0); // Создаем товар со скидкой
+            bill.addGoods(new Item(goods, 2, 200));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 400"));
             Assert.IsTrue(result.Contains("Вы заработали 4 бонусных балов"));
@@ -77,7 +88,9 @@ namespace regressionTesting
         [Test]
         public void test7()
         {
-            bill.addGoods(new Item(new RegularGoods("Товар 1"), 3, 100));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("REG", "Товар 1", 0); // Создаем обычный товар
+            bill.addGoods(new Item(goods, 3, 100));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 291,00\n"));
             Assert.IsTrue(result.Contains("Вы заработали 15 бонусных балов"));
@@ -85,15 +98,20 @@ namespace regressionTesting
         [Test]
         public void test8()
         {
-            bill.addGoods(new Item(new RegularGoods("Товар 1"), 2, 100));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("REG", "Товар 1", 0); // Создаем обычный товар
+            bill.addGoods(new Item(goods, 2, 100));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 200\n"));
             Assert.IsTrue(result.Contains("Вы заработали 10 бонусных балов"));
         }
+
         [Test]
         public void test9()
         {
-            bill.addGoods(new Item(new RegularGoods("Товар 1"), 0, 100));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goods = goodsFactory.Create("REG", "Товар 1", 0); // Создаем обычный товар
+            bill.addGoods(new Item(goods, 0, 100));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 0"));
             Assert.IsTrue(result.Contains("Вы заработали 0 бонусных балов"));
@@ -101,9 +119,13 @@ namespace regressionTesting
         [Test]
         public void test10()
         {
-            bill.addGoods(new Item(new RegularGoods("Товар 1"), 6, 100));
-            bill.addGoods(new Item(new SaleGoods("Товар со скидкой"), 11, 200));
-            bill.addGoods(new Item(new SpecialGoods("Товар 2"), 15, 50));
+            GoodsFactory goodsFactory = new GoodsFactory();
+            Goods goodsReg = goodsFactory.Create("REG", "Товар 1", 0); // Создаем обычный товар
+            Goods goodsSal = goodsFactory.Create("SAL", "Товар со скидкой", 0); // Создаем товар со скидкой
+            Goods goodsSpo = goodsFactory.Create("SPO", "Товар 2", 0); // Создаем специальный товар
+            bill.addGoods(new Item(goodsReg, 6, 100));
+            bill.addGoods(new Item(goodsSal, 11, 200));
+            bill.addGoods(new Item(goodsSpo, 15, 50));
             var result = bill.GenerateBill();
             Assert.IsTrue(result.Contains("Сумма счета составляет 3496,25"));
             Assert.IsTrue(result.Contains("Вы заработали 52 бонусных балов"));
@@ -156,8 +178,7 @@ namespace regressionTesting
             using (FileStream fs = new FileStream(nameHtmlSource, FileMode.Open))
             using (StreamReader sr = new StreamReader(fs))
             {
-                BillFactory factory = new BillFactory(fileSourceHtml);
-                BillGenerator bill = factory.CreateBill(sr);
+                BillGenerator bill = billFactoryHtml.CreateBill(sr, "RegularSettings.json");
                 string result = bill.GenerateBill();
                 Assert.IsTrue(result.Contains("Сумма счета составляет 553,3"));
                 Assert.IsTrue(result.Contains("Вы заработали 20 бонусных балов"));
@@ -169,8 +190,7 @@ namespace regressionTesting
             using (FileStream fs = new FileStream(nameYamlSource, FileMode.Open))
             using (StreamReader sr = new StreamReader(fs))
             {
-                BillFactory factory = new BillFactory(fileSourceYaml);
-                BillGenerator bill = factory.CreateBill(sr);
+                BillGenerator bill = billFactoryYaml.CreateBill(sr, "RegularSettings.json");
                 string result = bill.GenerateBill();
                 Assert.IsTrue(result.Contains("Сумма счета составляет 553,3"));
                 Assert.IsTrue(result.Contains("Вы заработали 20 бонусных балов"));
@@ -190,11 +210,32 @@ namespace regressionTesting
                               "1: 1 100 50"; // Покупка на 5000 рублей
             using (StringReader sr = new StringReader(testData))
             {
-                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr);
+                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr, "NewYearsSettings.json");
                 var result = billGenerator.GenerateBill();
                 // Ожидаем, что скидка не применяется, но бонусы начисляются 7% от 5000
                 Assert.IsTrue(result.Contains("Сумма счета составляет 4840,00"));
                 Assert.IsTrue(result.Contains("Вы заработали 350 бонусных балов"));
+            }
+        }
+        [Test]
+        public void UsualDiscountAndBonusForRegularGoods()
+        {
+            // Предположим, что даты предновогодних недель учитываются внутри стратегий
+            string testData = "CustomerName: Test\r\n" +
+                              "CustomerBonus: 10\r\n" +
+                              "GoodsTotalCount: 1\r\n" +
+                              "# ID: NAME TYPE(REG/SAL/SPO)\r\n" +
+                              "1: Milk REG\r\n" +
+                              "ItemsTotalCount: 1\r\n" +
+                              "# ID: GID PRICE QTY\r\n" +
+                              "1: 1 100 50"; // Покупка на 5000 рублей
+            using (StringReader sr = new StringReader(testData))
+            {
+                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr, "RegularSettings.json");
+                var result = billGenerator.GenerateBill();
+                // Ожидаем, что скидка не применяется, но бонусы начисляются 7% от 5000
+                Assert.IsTrue(result.Contains("Сумма счета составляет 4840,00"));
+                Assert.IsTrue(result.Contains("Вы заработали 250 бонусных балов"));
             }
         }
         [Test]
@@ -210,10 +251,10 @@ namespace regressionTesting
                               "1: 1 2000 2"; // Покупка на 4000 рублей
             using (StringReader sr = new StringReader(testData))
             {
-                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr);
+                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr, "NewYearsSettings.json");
                 var result = billGenerator.GenerateBill();
                 // Ожидаем скидку 3% на товары со скидкой при покупке более чем на 2000 руб.
-                Assert.IsTrue(result.Contains("Сумма счета составляет 3870,00")); // 4000 - 3% скидка
+                Assert.IsTrue(result.Contains("Сумма счета составляет 3880,00")); // 4000 - 3% скидка
                 Assert.IsTrue(result.Contains("Вы заработали 40 бонусных балов")); // 1% от 4000
             }
         }
@@ -224,13 +265,13 @@ namespace regressionTesting
                               "CustomerBonus: 10\r\n" +
                               "GoodsTotalCount: 1\r\n" +
                               "# ID: NAME TYPE(REG/SAL/SPO)\r\n" +
-                              "1: New Year Candy SPO\r\n" +
+                              "1: New_Year_Candy SPO\r\n" +
                               "ItemsTotalCount: 1\r\n" +
                               "# ID: GID PRICE QTY\r\n" +
                               "1: 1 300 11"; // Покупка на 3300 рублей
             using (StringReader sr = new StringReader(testData))
             {
-                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr);
+                BillGenerator billGenerator = billFactoryYaml.CreateBill(sr, "NewYearsSettings.json");
                 var result = billGenerator.GenerateBill();
                 // Ожидаем скидку 5% на акционные товары при покупке более чем на 3000 руб.
                 Assert.IsTrue(result.Contains("Сумма счета составляет 3125,00")); // 3300 - 5% скидка
@@ -239,3 +280,5 @@ namespace regressionTesting
         }
     }
 }
+
+

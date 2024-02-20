@@ -16,9 +16,8 @@ namespace РРУК_01
     {
         public int CalculateBonus(int quantity, decimal price)
         {
-            if (quantity > 2)
-                return (int)(quantity * price * 0.05m); // 5% от суммы покупки
-            return 0;
+            return (int)(quantity * price * 0.05m);// 5% от суммы покупки
+
         }
     }
     // Реализация стратегии для товаров со скидкой
@@ -45,7 +44,7 @@ namespace РРУК_01
         {
             // 7% от суммы покупки при покупке от 5000 руб.
             var total = quantity * price;
-            if (total > 5000)
+            if (total >= 5000)
                 return (int)(total * 0.07m);
             else if (quantity > 2)
                 return (int)(quantity * price * 0.05m); // 5% от суммы покупки в обычном случае

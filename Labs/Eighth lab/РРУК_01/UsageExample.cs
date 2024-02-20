@@ -4,8 +4,10 @@
     {
         static void Example(string[] args)
         {
-            Goods cola = new RegularGoods("Cola");
-            Goods pepsi = new SaleGoods("Pepsi");
+            IBonusStrategy bonusStrategy;
+            IDiscountStrategy discountStrategy;
+            Goods cola = new Goods("Cola", bonusStrategy=new RegularBonusStrategy(), discountStrategy=new RegularDiscountStrategy());
+            Goods pepsi = new Goods("Pepsi",bonusStrategy=new SaleBonusStrategy(),discountStrategy = new SaleDiscountStrategy());
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 3, 50);
             Customer x = new Customer("test", 10);

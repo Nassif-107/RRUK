@@ -14,10 +14,12 @@ namespace РРУК_01
         private TextReader reader;
         private string line;
         private string[] parts;
+        private int strategyType;
         //---Метод отвечающий за получение источника
-        public void SetSource(TextReader reader)
+        public void SetSource(TextReader reader, int strategyType)
         {
             this.reader = reader;
+            this.strategyType = strategyType;
         }
         //---Метод отвечающий за чтение покупателя
         public Customer GetCustomer()
@@ -47,7 +49,7 @@ namespace РРУК_01
             parts = line.Split(':');
             parts = parts[1].Trim().Split();
             string type = parts[1].Trim();
-            return factory.Create(type, parts[0]);
+            return factory.Create(type, parts[0], strategyType);
         }
         //---Метод отвечающий за чтение количества товаров
         public int GetItemsCount()

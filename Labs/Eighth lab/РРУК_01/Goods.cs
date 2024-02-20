@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace РРУК_01
 {
+    //---Класс отвечающий за сведения о продукте
     public class Goods
     {
         protected string title;
         protected int priceCode;
-        protected IBonusStrategy bonusStrategy;
+        public IBonusStrategy bonusStrategy;
         protected IDiscountStrategy discountStrategy;
         public Goods(string title, IBonusStrategy bonusStrategy, IDiscountStrategy discountStrategy)
         {

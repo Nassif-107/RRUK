@@ -11,10 +11,12 @@ namespace РРУК_01
     {
         private TextReader reader;
         private string line;
+        private int strategyType;
         //---Метод отвечающий за получение источника
-        public void SetSource(TextReader reader)
+        public void SetSource(TextReader reader,int strategyType)
         {
             this.reader = reader;
+            this.strategyType = strategyType;
         }
         //---Метод отвечающий за чтение покупателя
         public Customer GetCustomer()
@@ -34,7 +36,7 @@ namespace РРУК_01
             GoodsFactory factory = new GoodsFactory();
             string type = ExtractValue("goodType");
             string name = ExtractValue("goodName");
-            return factory.Create(type, name);
+            return factory.Create(type, name, strategyType);
         }
         //---Метод отвечающий за чтение количества товаров
         public int GetItemsCount()

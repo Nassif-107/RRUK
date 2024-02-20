@@ -27,15 +27,15 @@ namespace РРУК_01
         public int GetUsedBonus(Item each, decimal sumWithDiscount)
         {
             int usedBonus = 0;
-            switch (each.getGoods().GetType())
+            switch (each.getGoods().bonusStrategy.GetType())
             {
                 //Обычный товав
-                case Type t when t == typeof(RegularGoods):
+                case Type t when (t == typeof(RegularBonusStrategy) || t == typeof(NewYearRegularBonusStrategy)):
                     if (each.getQuantity() > 5)
                         usedBonus = _customer.useBonus((int)(sumWithDiscount));
                     break;
                 //Специальное предложение
-                case Type t when t == typeof(SpecialGoods):
+                case Type t when t == typeof(SpecialBonusStrategy):
                     if (each.getQuantity() > 1)
                         usedBonus = _customer.useBonus((int)(sumWithDiscount));
                     break;
@@ -50,8 +50,11 @@ namespace РРУК_01
         public BillSummary Process()
         {
             List<Item>.Enumerator items = _items.GetEnumerator();
-            var billSummary = new BillSummary { CustomerName = _customer.getName(),
-            ItemSummaries=new List<ItemSummary>()};
+            var billSummary = new BillSummary
+            {
+                CustomerName = _customer.getName(),
+                ItemSummaries = new List<ItemSummary>()
+            };
 
             while (items.MoveNext())
             {
@@ -73,7 +76,7 @@ namespace РРУК_01
                     Name = each.getGoods().getTitle(),
                     Price = each.getPrice(),
                     Quantity = each.getQuantity(),
-                    Sum = sumWithDiscount,
+                    Sum = thisAmount,
                     Discount = discount,
                     Bonus = bonus
                 };

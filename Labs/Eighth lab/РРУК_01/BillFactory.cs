@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace РРУК_01
 {
+    // Класс генерации чеков
     public class BillFactory
     {
         private IFileSource readContent;
@@ -14,9 +16,25 @@ namespace РРУК_01
             this.readContent = readContent;
         }
         //---Метод для преобразования данных из файла
-        public BillGenerator CreateBill(TextReader sr)
+        public BillGenerator CreateBill(TextReader sr, string config = "RegularSettings.json")
         {
-            readContent.SetSource(sr);
+            int strategyType;
+            var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config);
+            if (!File.Exists(configPath))
+            {
+                throw new FileNotFoundException("Конфигурационный файл не найден.", configPath);
+            }
+            string configJson = File.ReadAllText(configPath);
+            var settings = JsonSerializer.Deserialize<ConfigSettings>(configJson);
+            if(settings.Season== "NewYears")
+            {
+                strategyType = 1;
+            }
+            else
+            {
+                strategyType = 0;
+            }
+            readContent.SetSource(sr, strategyType);
             // Чтение покупателя
             Customer customer = readContent.GetCustomer();
             IView view = new TxtView();
@@ -38,5 +56,10 @@ namespace РРУК_01
             }
             return b;
         }
+    }
+    //Класс для расспознования конфигураций
+    public class ConfigSettings
+    {
+        public string Season { get; set; }
     }
 }

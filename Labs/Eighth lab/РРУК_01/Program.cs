@@ -7,19 +7,48 @@ namespace РРУК_01
     {
         static void Main(string[] args)
         {
-            string filename = "BillInfo.yaml";
-            if (args.Length == 1)
-                filename = args[0];
-            IFileSource fileSource = FileSourceFactory.CreateFileSource(filename);
+            //string filename = "BillInfo.yaml";
+            //if (args.Length == 1)
+            //    filename = args[0];
+            //IFileSource fileSource = FileSourceFactory.CreateFileSource(filename);
 
-            using (FileStream fs = new FileStream(filename, FileMode.Open))
-            using (StreamReader sr = new StreamReader(fs))
+            //using (FileStream fs = new FileStream(filename, FileMode.Open))
+            //using (StreamReader sr = new StreamReader(fs))
+            //{
+            //    BillFactory factory = new BillFactory(fileSource);
+            //    BillGenerator bill = factory.CreateBill(sr, "NewYearsSettings.json");
+            //    string billOutput = bill.GenerateBill();
+            //    Console.WriteLine(billOutput);
+            //}
+
+
+            string testData = "CustomerName: Test\r\n" +
+                              "CustomerBonus: 10\r\n" +
+                              "GoodsTotalCount: 1\r\n" +
+                              "# ID: NAME TYPE(REG/SAL/SPO)\r\n" +
+                              "1: Milk REG\r\n" +
+                              "ItemsTotalCount: 1\r\n" +
+                              "# ID: GID PRICE QTY\r\n" +
+                              "1: 1 100 50"; // Покупка на 5000 рублей
+            string filename = "BillInfo.yaml";
+            IFileSource fileSource = FileSourceFactory.CreateFileSource(filename);
+            BillFactory factory = new BillFactory(fileSource);
+            using (StringReader sr = new StringReader(testData))
             {
-                BillFactory factory = new BillFactory(fileSource);
-                BillGenerator bill = factory.CreateBill(sr);
-                string billOutput = bill.GenerateBill();
-                Console.WriteLine(billOutput);
+                BillGenerator billGenerator = factory.CreateBill(sr, "RegularSettings.json");
+                var result = billGenerator.GenerateBill();
+                Console.WriteLine(result);
             }
+
+            //Customer customer = new Customer("Тестовый клиент", 10);
+            //IView view = new TxtView();
+            //var bill = new BillGenerator(customer, view);
+            //GoodsFactory goodsFactory = new GoodsFactory();
+            //// Создаем товар с использованием GoodsFactory и обычной стратегии (strategyType = 0)
+            //Goods goods = goodsFactory.Create("REG", "Товар 1", 0);
+            //bill.addGoods(new Item(goods, 1, 100));
+            //var result = bill.GenerateBill();
+            //Console.WriteLine(result);
         }
     }
 }

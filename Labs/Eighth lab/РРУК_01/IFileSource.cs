@@ -9,7 +9,7 @@ namespace РРУК_01
     //Интерфейс для обработки входных данных
     public interface IFileSource
     {
-        public void SetSource(TextReader reader);
+        public void SetSource(TextReader reader, int strategyType);
         public Customer GetCustomer();
         public int GetGoodsCount();
         public Goods GetNextGood();
