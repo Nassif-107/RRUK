@@ -16,8 +16,12 @@ namespace РРУК_01
             this.readContent = readContent;
         }
         //---Метод для преобразования данных из файла
-        public BillGenerator CreateBill(TextReader sr, string config = "RegularSettings.json")
+        public BillGenerator CreateBill(TextReader sr, string config = "RegularSettings.json", IView view = null)
         {
+            if (view == null)
+            {
+                view = new TxtView();
+            }
             int strategyType;
             var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, config);
             if (!File.Exists(configPath))
@@ -37,7 +41,6 @@ namespace РРУК_01
             readContent.SetSource(sr, strategyType);
             // Чтение покупателя
             Customer customer = readContent.GetCustomer();
-            IView view = new TxtView();
             BillGenerator b = new BillGenerator(customer, view);
             //Чтение количества продуктов
             int goodsQty = readContent.GetGoodsCount();
