@@ -15,7 +15,7 @@ namespace ConsoleAppForTesting
             using (StreamReader sr = new StreamReader(fs))
             {
                 BillFactory factory = new BillFactory(fileSource);
-                BillGenerator bill = factory.CreateBill(sr, "NewYearsSettings.json");
+                BillGenerator bill = factory.CreateBill(sr, "NewYearsSettings.json",new HtmlView());
                 string billOutput = bill.GenerateBill();
                 Console.WriteLine(billOutput);
             }
