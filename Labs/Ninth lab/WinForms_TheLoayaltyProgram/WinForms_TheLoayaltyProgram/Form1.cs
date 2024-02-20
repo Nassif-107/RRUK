@@ -58,19 +58,15 @@ namespace WinForms_TheLoayaltyProgram
             {
                 MessageBox.Show("Выберите файл","Файл не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
         }
-
         private void ShowBill_Click(object sender, EventArgs e)
         {
             Proccess();
         }
-
         private void button_Exit_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         private void button_ToSelect_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog

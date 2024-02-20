@@ -1,4 +1,3 @@
-using ––” _01;
 namespace WinForms_TheLoayaltyProgram
 {
     internal static class Program
