@@ -58,7 +58,6 @@ namespace РРУК_01
                     throw new ArgumentException("Неизвестный тип стратегии");
             }
             return new Goods(title, bonusStrategy, discountStrategy);
-
         }
     }
 }
