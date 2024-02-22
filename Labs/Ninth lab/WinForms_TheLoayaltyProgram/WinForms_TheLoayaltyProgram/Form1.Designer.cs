@@ -37,11 +37,13 @@
             TB_FileName = new TextBox();
             label2 = new Label();
             label3 = new Label();
+            comboBox_Seasons = new ComboBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // ShowBill
             // 
-            ShowBill.Location = new Point(339, 226);
+            ShowBill.Location = new Point(214, 226);
             ShowBill.Name = "ShowBill";
             ShowBill.Size = new Size(117, 64);
             ShowBill.TabIndex = 0;
@@ -56,7 +58,7 @@
             // comboBox
             // 
             comboBox.FormattingEnabled = true;
-            comboBox.Location = new Point(330, 166);
+            comboBox.Location = new Point(214, 166);
             comboBox.Name = "comboBox";
             comboBox.Size = new Size(136, 33);
             comboBox.TabIndex = 1;
@@ -84,7 +86,7 @@
             // 
             // button_ToSelect
             // 
-            button_ToSelect.Location = new Point(93, 150);
+            button_ToSelect.Location = new Point(31, 119);
             button_ToSelect.Name = "button_ToSelect";
             button_ToSelect.Size = new Size(111, 63);
             button_ToSelect.TabIndex = 4;
@@ -94,7 +96,7 @@
             // 
             // TB_FileName
             // 
-            TB_FileName.Location = new Point(64, 259);
+            TB_FileName.Location = new Point(31, 259);
             TB_FileName.Name = "TB_FileName";
             TB_FileName.ReadOnly = true;
             TB_FileName.Size = new Size(170, 31);
@@ -103,7 +105,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(330, 138);
+            label2.Location = new Point(214, 138);
             label2.Name = "label2";
             label2.Size = new Size(144, 25);
             label2.TabIndex = 6;
@@ -112,17 +114,36 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(64, 226);
+            label3.Location = new Point(31, 202);
             label3.Name = "label3";
             label3.Size = new Size(101, 25);
             label3.TabIndex = 7;
             label3.Text = "Имя файла";
+            // 
+            // comboBox_Seasons
+            // 
+            comboBox_Seasons.FormattingEnabled = true;
+            comboBox_Seasons.Location = new Point(388, 166);
+            comboBox_Seasons.Name = "comboBox_Seasons";
+            comboBox_Seasons.Size = new Size(171, 33);
+            comboBox_Seasons.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(413, 138);
+            label4.Name = "label4";
+            label4.Size = new Size(61, 25);
+            label4.TabIndex = 9;
+            label4.Text = "Сезон";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(580, 383);
+            Controls.Add(label4);
+            Controls.Add(comboBox_Seasons);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(TB_FileName);
@@ -148,5 +169,7 @@
         private TextBox TB_FileName;
         private Label label2;
         private Label label3;
+        private ComboBox comboBox_Seasons;
+        private Label label4;
     }
 }

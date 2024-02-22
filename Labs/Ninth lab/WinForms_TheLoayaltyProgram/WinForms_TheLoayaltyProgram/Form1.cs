@@ -8,28 +8,25 @@ namespace WinForms_TheLoayaltyProgram
         string billOutput;
         string filename;
         IView view;
+        string seasonName;
         public Form1()
         {
             InitializeComponent();
             comboBox.Items.Add("txt");
             comboBox.Items.Add("html");
             comboBox.SelectedIndex = 0;
+            comboBox_Seasons.Items.Add("Обычный");
+            comboBox_Seasons.Items.Add("Предновогодний");
+            comboBox_Seasons.SelectedIndex = 0;
         }
         public void Proccess()
         {
-            if (comboBox.Text == "html")
-            {
-                view = new HtmlView();
-            }
-            else if (comboBox.Text == "txt")
-            {
-                view = new TxtView();
-            }
-            else
-            {
-                MessageBox.Show("Выберите формат файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            if(filename != null)
+            //Выбор вида, для вывода 
+            ChoiceView();
+            //Выбор сезона
+            ChoiceSeason();
+
+            if (filename != null && seasonName != null)
             {
                 IFileSource fileSource = FileSourceFactory.CreateFileSource(filename);
 
@@ -39,7 +36,7 @@ namespace WinForms_TheLoayaltyProgram
                     if (view != null)
                     {
                         BillFactory factory = new BillFactory(fileSource);
-                        BillGenerator bill = factory.CreateBill(sr, "NewYearsSettings.json", view);
+                        BillGenerator bill = factory.CreateBill(sr, seasonName, view);
                         billOutput = bill.GenerateBill();
                         if (view.GetType() == typeof(HtmlView))
                         {
@@ -57,6 +54,38 @@ namespace WinForms_TheLoayaltyProgram
             else
             {
                 MessageBox.Show("Выберите файл","Файл не выбран", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //---Метод для выбора вида вывода
+        private void ChoiceView()
+        {
+            if (comboBox.Text == "html")
+            {
+                view = new HtmlView();
+            }
+            else if (comboBox.Text == "txt")
+            {
+                view = new TxtView();
+            }
+            else
+            {
+                MessageBox.Show("Выберите формат файла", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //---Метод для выбора сезона
+        private void ChoiceSeason()
+        {
+            if (comboBox_Seasons.Text == "Предновогодний")
+            {
+                seasonName = "NewYearsSettings.json";
+            }
+            else if (comboBox_Seasons.Text == "Обычный")
+            {
+                seasonName = "RegularSettings.json";
+            }
+            else
+            {
+                MessageBox.Show("Выберите сезон", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ShowBill_Click(object sender, EventArgs e)
