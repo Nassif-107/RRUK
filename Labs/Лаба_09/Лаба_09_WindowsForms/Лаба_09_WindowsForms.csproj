@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Лаба_09_Библиотека">
+      <HintPath>..\Лаба_09_Библиотека\bin\Debug\net8.0\Лаба_09_Библиотека.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
